@@ -18,7 +18,7 @@ We will also set up a monitoring system for failure/error or issues in our appli
 
 We need to set up a VPC with 2 private and 2 public subnets, and we need to use a bastion host for accessing our Database obviously we need to protect our internal database. This is a security measure.
 
-Create Posgres RDS instance
+# Create Posgres RDS instance #
 1.	Login to AWS Console 
 2.	Choose your preferred regions, like us-east-1
 3.	Go to RDS service and create a Postgres Database (non-public with in your VPC with private subnets) from there.
@@ -33,7 +33,7 @@ Create ECS Fargate cluster
 6.	Provide a name like “ECS-fargate-cluster-demo”.
 7.	Don’t Select “Create VPC” as we will be using existing VPC.
 8.	Select the “CloudWatch Container Insights” check box and click create.
-Create AWS ECR Repository
+# Create AWS ECR Repository #
 ECR repository is a private docker registry. You can upload your docker images inside ECR .  Search ECR  on the page where you have  ECR Click on create repository and provide the name “test1" of the repository here 
 1.	Click on “create repository” button.
 Upload your docker image to AWS ECR
@@ -46,7 +46,7 @@ c. It will open a popup and will show all the commands you need to push the imag
 d. Push test1 image in test1 repository 
 Create Application Load Balancer
 When we have multiple containers of each service, application load balancer will redirect the traffic to least used node and this way it will make sure load is always balanced between each container holding the same service.
-Let’s create one Application load-balancer now.
+# Let’s create one Application load-balancer now.#
 1.	Login to AWS Console 
 2.	Go to EC2 Console and select the desired region where you have created your VPC above.
 3.	Click on “Load Balancers” from the left menu.
@@ -81,7 +81,7 @@ Let’s understand and create the below three IAM roles before we create any con
 3.	ECS Auto Scale Role: This role will be used to allow ECS to auto-scale ECS tasks based on load. “AmazonEC2ContainerServiceAutoscaleRole” policy is required for this role to work.
 
 
-Create Task Definitions
+# Create Task Definitions #
 1.	Login to AWS Console 
 2.	Go to ECS Console and select the desired region where you have created your VPC above.
 3.	Click on “Task Definitions” from the left menu.
@@ -151,7 +151,7 @@ a. This will configure the number of tasks should be present at any given time.
 b. During deployment, ECS will first bring down the number of tasks defined via “Minimum healthy percent” and start the new tasks with new “task definition version” and once the health check of “Target group” is passed it will bring down the rest of the containers and start new one based on “Maximum healthy percent “. This way your service will always be available at any given time.
 2.	Security groups: We have created a security group for the tasks and allowed only “Application load balancer” to communicate with them
 3.	Auto-assign public IP: This way we made sure that all our containers will not be accessible outside network.
-4.	§ Service Auto Scaling: In case of CPU utilisation of the container is more than 70% for continues 5 mins, then it will add one more task. In case CPU utilisation of the container is less than 50% for continues 5 mins, then it will remove one task. But the minimum and maximum number of tasks will always be maintained.
+4.	 Service Auto Scaling: In case of CPU utilisation of the container is more than 70% for continues 5 mins, then it will add one more task. In case CPU utilisation of the container is less than 50% for continues 5 mins, then it will remove one task. But the minimum and maximum number of tasks will always be maintained.
 This way we have deployed our services in ECS clusters. 
 we have made sure that the task will register itself with ALB while creating. But we have not yet setup the API calls directions to service based on the path in case of scalability if we need to add another service in future.
 If one service makes a call like “http://<ALB NAME>/test1” it should reach to test1 service and if call is like “http://<ALB NAME>/test2” then it should reach to test2 service.
@@ -168,7 +168,7 @@ a. Forward to
 b. Select Target Group: ecs-fatrgate-test1-tg
 7.	Click ok.
  
-Expose API endpoints via API gateway
+# Expose API endpoints via API gateway #
 AWS API Gateway is managed service for creating and publishing APIs with security and scale. API Gateway is capable of handling hundreds of thousands of concurrent requests.
 We will expose our services as Rest API via “API Gateway”. Our services are hosted inside VPC and can’t be accessed via internet currently. We need to use “API Gateway” private integration to expose our private endpoints via “API Gateway”.
 Create Network Load Balancer
@@ -197,7 +197,7 @@ API gateway will send the traffic to NLB and NLB will route the traffic to ALB. 
 1.	Add the ALB IP addresses in NLB target group we have created above with name “ecs-fargate-nlb-group”.
 2.	Add the IP addresses of NLB in security group of ALB we created above as inbound rule on port 80.
  
-Create VPC Links
+# Create VPC Links #
 We need to create “VPC Links” in API Gateway to send traffic to NLB, created above.
 1.	Login to API Gateway console.
 2.	Click on “VPC Links” option in left menu.
