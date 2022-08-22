@@ -245,5 +245,16 @@ Let’s Deploy the API and test the API
 3.	Stage name: Test
 4.	Hit Deploy to deploy the API.
 
+ # Configuring AWS Cognito User Pool#
  
- 
+ Go to AWS Management Console.
+ You can find Amazon Cognito service under Security, Identity & Compliance section.
+
+Click on Manage User Pool, on the home Page of AWS Cognito.
+
+Now click on the button Create User Pool. Now there will be different Sections to configure User Pool.
+
+Configure sign-in
+First, you need to choose Authentication Providers. In the Providers Type, there are two options
+
+You can configure token authentication base on amazon incognito.
