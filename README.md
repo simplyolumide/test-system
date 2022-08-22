@@ -256,5 +256,13 @@ Now click on the button Create User Pool. Now there will be different Sections t
 
 Configure sign-in
 First, you need to choose Authentication Providers. In the Providers Type, there are two options
+ 
+ Cognito User Pool
+If you want the user to sign in using their email address, Phone Number, or User Name. You can select one or multiple Attributes which will be prompted when the user sign-up.
 
-You can configure token authentication base on amazon incognito.
+NOTE — You will not be able to change the sign-in options once you have created the User Pool
+
+Federated Identity Providers
+If you want your user to sign in with social identity providers like Facebook, Google, Amazon, or Apple.
+
+You can configure token authentication base on amazon incognito using Advanced App client setting.
