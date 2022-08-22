@@ -245,7 +245,7 @@ Let’s Deploy the API and test the API
 3.	Stage name: Test
 4.	Hit Deploy to deploy the API.
 
- # Configuring AWS Cognito User Pool#
+ # Configuring AWS Cognito User Pool
  
  Go to AWS Management Console.
  You can find Amazon Cognito service under Security, Identity & Compliance section.
