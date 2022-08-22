@@ -18,7 +18,7 @@ We will also set up a monitoring system for failure/error or issues in our appli
 
 We need to set up a VPC with 2 private and 2 public subnets, and we need to use a bastion host for accessing our Database obviously we need to protect our internal database. This is a security measure.
 
-# Create Posgres RDS instance #
+# Create Postgres RDS instance #
 1.	Login to AWS Console 
 2.	Choose your preferred regions, like us-east-1
 3.	Go to RDS service and create a Postgres Database (non-public with in your VPC with private subnets) from there.
